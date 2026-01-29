@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionische grijpers - Futuristic Tech</title>
+    <style>
+        /* ============================================
+           CSS VARIABELEN - PAS HIER KLEUREN AAN
+           ============================================ */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --neon-green: #00ff88;
+            --neon-blue: #0088ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #666666;
+            --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3);
+            --glow-magenta: 0 0 20px rgba(255, 0, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
+            --glow-green: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.3);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 5rem;
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        /* ============================================
+           RESET & BASIS STIJLEN
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Subtiele achtergrond grid animatie */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* ============================================
+           CONTAINER & LAYOUT
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        /* ============================================
+           HERO SECTIE - HOOFDAFBEELDING
+           ============================================ */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* VERVANG HIER DE AFBEELDING - src attribuut aanpassen */
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: var(--glow-cyan);
+            transition: all var(--transition-speed) ease;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.7),
+                0 0 60px rgba(0, 255, 255, 0.4),
+                0 0 90px rgba(0, 255, 255, 0.2);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: var(--glow-cyan);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px rgba(0, 255, 255, 0.6),
+                    0 0 50px rgba(0, 255, 255, 0.4);
+            }
+        }
+
+        /* ============================================
+           BUTTONS - FUTURISTISCHE STIJL
+           ============================================ */
+        .btn {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-cyan);
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover {
+            color: var(--bg-primary);
+            background: var(--neon-cyan);
+            box-shadow: var(--glow-cyan);
+            transform: translateY(-3px);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-magenta {
+            color: var(--neon-magenta);
+            border-color: var(--neon-magenta);
+        }
+
+        .btn-magenta:hover {
+            background: var(--neon-magenta);
+            box-shadow: var(--glow-magenta);
+        }
+
+        .btn-green {
+            color: var(--neon-green);
+            border-color: var(--neon-green);
+        }
+
+        .btn-green:hover {
+            background: var(--neon-green);
+            box-shadow: var(--glow-green);
+        }
+
+        .btn-container {
+            margin: var(--spacing-md) 0;
+        }
+
+        /* ============================================
+           BESCHRIJVING SECTIE - OVER ONS
+           ============================================ */
+        .description {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            border-left: 4px solid var(--neon-cyan);
+            position: relative;
+        }
+
+        .description::before {
+            content: '>';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: var(--glow-cyan);
+        }
+
+        .description-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           BUTTONS GRID - STL & PYTHON
+           ============================================ */
+        .buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            justify-content: center;
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* ============================================
+           ESP32 CODE TABS
+           ============================================ */
+        .tabs-section {
+            margin: var(--spacing-xl) 0;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: 0;
+        }
+
+        .tab-button {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--text-muted);
+            border-bottom: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            top: 1px;
+        }
+
+        .tab-button:hover {
+            color: var(--neon-green);
+            border-color: var(--neon-green);
+        }
+
+        .tab-button.active {
+            color: var(--neon-green);
+            background: var(--bg-tertiary);
+            border-color: var(--neon-green);
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--neon-green);
+            border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
+            padding: var(--spacing-md);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'ESP32 CODE';
+            position: absolute;
+            top: var(--spacing-xs);
+            right: var(--spacing-sm);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .code-block pre {
+            color: var(--neon-green);
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        .code-block .keyword {
+            color: var(--neon-magenta);
+        }
+
+        .code-block .string {
+            color: var(--neon-cyan);
+        }
+
+        /* ============================================
+           AFBEELDINGEN SECTIE - TWEE NAAST ELKAAR
+           ============================================ */
+        .images-section {
+            margin: var(--spacing-xl) 0;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .image-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--text-muted);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .image-card:hover {
+            border-color: var(--neon-magenta);
+            box-shadow: var(--glow-magenta);
+            transform: translateY(-5px);
+        }
+
+        /* VERVANG HIER DE AFBEELDINGEN - src attribuut aanpassen */
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: var(--spacing-md);
+            transform: translateY(100%);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .image-card:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .image-overlay p {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           ONDERDELENLIJST SECTIE
+           ============================================ */
+        .parts-section {
+            margin: var(--spacing-xl) 0;
+            padding-bottom: var(--spacing-xl);
+        }
+
+        .parts-list {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--text-muted);
+        }
+
+        .parts-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .parts-list li {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--bg-tertiary);
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: var(--spacing-md);
+        }
+
+        .parts-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+        }
+
+        .parts-list li:last-child {
+            border-bottom: none;
+        }
+
+        .parts-placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--bg-tertiary);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer span {
+            color: var(--neon-cyan);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero-image {
+                max-width: 90%;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .tabs-container {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                border-radius: var(--border-radius);
+                border: 1px solid var(--text-muted);
+            }
+
+            .tab-button.active {
+                border: 1px solid var(--neon-green);
+            }
+
+            .tab-content {
+                border-radius: var(--border-radius);
+            }
+
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .description::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --spacing-md: 1.5rem;
+                --spacing-lg: 2rem;
+                --spacing-xl: 3rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
+            .code-block pre {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ============================================
+           SCROLLBAR STYLING
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-magenta);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- ============================================
+             HERO SECTIE - HOOFDAFBEELDING
+             Vervang de src met je eigen afbeelding
+             ============================================ -->
+        <section class="hero">
+            <div class="hero-image-container">
+                <!-- VERVANG DEZE AFBEELDING: Pas de src aan naar je eigen foto -->
+                <img 
+                    src="https://share.brunsveld.eu/api/shares/niggger/files/1356bfc5-5c94-4e8e-a66c-bc4a678244c7?download=false" 
+                    alt="Onze team foto" 
+                    class="hero-image"
+                >
+            </div>
+
+            <!-- ============================================
+                 TIKTOK BUTTON
+                 Vervang de href met je TikTok link
+                 ============================================ -->
+            <div class="btn-container">
+                <!-- VERVANG DEZE LINK: Pas de href aan naar je TikTok profiel -->
+                <a href="https://www.tiktok.com/@bionischegrijpers" class="btn" target="_blank" rel="noopener noreferrer">
+                    TikTok
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================
+             BESCHRIJVING SECTIE - OVER ONS
+             Pas de tekst aan met jullie beschrijving
+             ============================================ -->
+        <section class="description">
+            <!-- PAS DEZE TITEL AAN indien gewenst -->
+            <h2 class="section-title">Over Ons</h2>
+            
+            <!-- VERVANG DEZE TEKST: Schrijf hier jullie beschrijving -->
+            <p class="description-text">
+             Welkom bij de Bionische grijpers,Dit project is gemaakt voor mensen die een arm missen.
+ Daarom hebben wij gekozen voor het ontwerpen en maken van een bionische hand.
+ Met dit project laten we zien hoe technologie en creativiteit samen kunnen komen
+ om mensen te helpen in het dagelijks leven.
+Dit project wordt uitgevoerd door leerlingen uit 5 havo 5
+ en is onderdeel van een schoolopdracht. Tijdens dit project doen wij onderzoek,
+ ontwerpen wij oplossingen en werken wij samen aan een functioneel eindproduct.
+Ons doel is niet alleen om een bionische hand te maken,
+ maar ook om andere mensen te inspireren.
+ Wij hopen dat ons project laat zien dat je met motivatie, samenwerking
+ en interesse in techniek je eigen projecten kunt bedenken en uitvoeren.
+                <br><br>
+                            </p>
+        </section>
+
+        <!-- ============================================
+             STL FILES & PYTHON SCRIPTS BUTTONS
+             Vervang de href links met je eigen URLs
+             ============================================ -->
+        <section class="buttons-row">
+            <!-- VERVANG DEZE LINK: Link naar je STL files -->
+            <a href="https://share.marijntjuhh.nl/api/shares/8lP3braL/files/281bece5-1230-4583-813c-8f39159051b7" class="btn btn-magenta" target="_blank" rel="noopener noreferrer">
+                STL Files
+            </a>
+            
+            <!-- VERVANG DEZE LINK: Link naar je Python scripts -->
+            <a href="https://share.marijntjuhh.nl/api/shares/pHKsYZ0q/files/e56c5297-42d4-4c06-8b9d-1969238287f3" class="btn btn-green" target="_blank" rel="noopener noreferrer">
+                Python Scripts
+            </a>
+        </section>
+
+        <!-- ============================================
+             ESP32 CODE TABS
+             Pas de code in elke tab aan met je eigen code
+             ============================================ -->
+        <section class="tabs-section">
+            <h2 class="section-title">ESP32 Code Voorbeelden</h2>
+            
+            <div class="tabs-container">
+                <button class="tab-button active" data-tab="tab1">ESP32 main robot hand</button>
+                <button class="tab-button" data-tab="tab2">ESP32 flex glove</button>
+                <button class="tab-button" data-tab="tab3">ESP32 for python</button>
+                <button class="tab-button" data-tab="tab4">ESP32 main hand without control</button>
+               
+            </div>
+
+            <!-- TAB 1 CONTENT - Pas deze code aan -->
+            <div class="tab-content active" id="tab1">
+                <div class="code-block">
+                    <pre><span class="comment">#include <Wire.h>
+#include <WiFi.h>
+#include <esp_now.h>
+#include <Adafruit_PWMServoDriver.h>
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40);
+
+int mapFlexToServo[5] = {
+  4,
+  3,
+  2,
+  1,
+  0
+};
+
+#define SERVO_OPEN  190
+#define SERVO_DICHT 550
+
+int dichtThreshold[5] = {2000, 2000, 2000, 2000, 2000};
+int openThreshold[5]  = {1200, 1200, 1200, 1200, 1200};
+
+bool invertedServo[5] = {
+  false,
+  false,
+  true,
+  true,
+  true
+};
+
+bool invertedFlex[5] = {
+  true,
+  false,
+  false,
+  false,
+  true
+};
+
+typedef struct {
+  int flex[5];
+} flexData;
+
+flexData data;
+
+bool fingerClosed[5] = {false, false, false, false, false};
+
+void onReceive(const esp_now_recv_info_t *info,
+               const uint8_t *incomingData,
+               int len) {
+
+  if (len != sizeof(flexData)) return;
+  memcpy(&data, incomingData, sizeof(data));
+
+  for (int s = 0; s < 5; s++) {
+    int f = mapFlexToServo[s];
+    int v = data.flex[f];
+
+    if (invertedFlex[f]) {
+      v = 8191 - v;
+    }
+
+    if (!fingerClosed[s] && v > dichtThreshold[f]) {
+      fingerClosed[s] = true;
+    }
+    else if (fingerClosed[s] && v < openThreshold[f]) {
+      fingerClosed[s] = false;
+    }
+
+    int pulse = fingerClosed[s] ? SERVO_DICHT : SERVO_OPEN;
+
+    if (invertedServo[s]) {
+      pulse = SERVO_OPEN + SERVO_DICHT - pulse;
+    }
+
+    pwm.setPWM(s, 0, pulse);
+  }
+
+  Serial.print("Flex: ");
+  for (int i = 0; i < 5; i++) {
+    Serial.print(data.flex[i]);
+    Serial.print("\t");
+  }
+  Serial.println();
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  Wire.begin(22, 21);
+  pwm.begin();
+  pwm.setPWMFreq(50);
+
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("ESP-NOW init fout");
+    while (true) delay(1000);
+  }
+
+  esp_now_register_recv_cb(onReceive);
+
+  Serial.println("ESP-NOW ontvanger klaar");
+}
+
+void loop() {
+}
+
+
+
+}</pre>
+                </div>
+            </div>
+
+            <!-- TAB 2 CONTENT - Pas deze code aan -->
+            <div class="tab-content" id="tab2">
+                <div class="code-block">
+                    <pre><span class="comment">#include <WiFi.h>
+#include <esp_now.h>
+
+uint8_t receiverMAC[] = {0x08, 0xD1, 0xF9, 0xD2, 0x3C, 0x54};
+
+int flexPins[5] = {1, 2, 3, 4, 5};
+
+typedef struct {
+  uint8_t finger[5];
+} flexData;
+
+flexData data;
+
+int dichtThreshold[5] = {600, 650, 550, 650, 600};
+int openThreshold[5]  = {1200, 1250, 1150, 1300, 1200};
+
+bool state[5] = {false, false, false, false, false};
+
+unsigned long lastSend = 0;
+const int sendInterval = 20;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+
+  esp_now_init();
+
+  esp_now_peer_info_t peerInfo = {};
+  memcpy(peerInfo.peer_addr, receiverMAC, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+  esp_now_add_peer(&peerInfo);
+}
+
+void loop() {
+  if (millis() - lastSend < sendInterval) return;
+  lastSend = millis();
+
+  for (int i = 0; i < 5; i++) {
+    int val = analogRead(flexPins[i]);
+
+    if (!state[i] && val < dichtThreshold[i]) {
+      state[i] = true;
+    }
+    else if (state[i] && val > openThreshold[i]) {
+      state[i] = false;
+    }
+
+    data.finger[i] = state[i];
+  }
+
+  esp_now_send(receiverMAC, (uint8_t*)&data, sizeof(data));
+}
+
+}</pre>
+                </div>
+            </div>
+
+            <!-- TAB 3 CONTENT - Pas deze code aan -->
+            <div class="tab-content" id="tab3">
+                <div class="code-block">
+                    <pre><span class="comment">// #include <WiFi.h>
+#include <esp_now.h>
+
+uint8_t receiverMAC[] = {0x08, 0xD1, 0xF9, 0xD2, 0x3C, 0x54};
+
+typedef struct {
+  int flex[5];
+} flexData;
+
+flexData data;
+String inputString = "";
+bool stringComplete = false;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("ESP-NOW init failed");
+    while (true) delay(1000);
+  }
+
+  esp_now_peer_info_t peerInfo = {};
+  memcpy(peerInfo.peer_addr, receiverMAC, 6);
+  peerInfo.channel = 0;
+  peerInfo.encrypt = false;
+
+  esp_now_add_peer(&peerInfo);
+
+  Serial.println("ESP-NOW sender ready");
+}
+
+void loop() {
+  while (Serial.available()) {
+    char c = (char)Serial.read();
+    if (c == '\n') {
+      stringComplete = true;
+    } else {
+      inputString += c;
+    }
+  }
+
+  if (stringComplete) {
+    inputString.trim();
+    inputString.replace("[", "");
+    inputString.replace("]", "");
+
+    int index = 0;
+    int startPos = 0;
+    int commaPos = inputString.indexOf(',');
+
+    while (commaPos >= 0 && index < 5) {
+      String valStr = inputString.substring(startPos, commaPos);
+      data.flex[index] = valStr.toInt();
+      startPos = commaPos + 1;
+      commaPos = inputString.indexOf(',', startPos);
+      index++;
+    }
+
+    if (index < 5) {
+      String valStr = inputString.substring(startPos);
+      data.flex[index] = valStr.toInt();
+    }
+
+    esp_now_send(receiverMAC, (uint8_t*)&data, sizeof(data));
+
+    Serial.print("Verstuurd via ESP-NOW: ");
+    for (int i = 0; i < 5; i++) {
+      Serial.print(data.flex[i]);
+      Serial.print(" ");
+    }
+    Serial.println();
+
+    inputString = "";
+    stringComplete = false;
+  }
+}
+
+}</pre>
+                </div>
+            </div>
+
+            <!-- TAB 4 CONTENT - Pas deze code aan -->
+            <div class="tab-content" id="tab4">
+                <div class="code-block">
+                    <pre><span class="comment">#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+ 
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+#define SERVO_CHANNEL 0
+ 
+#define SERVO_STOP 370
+#define SERVO_RIGHT 550
+#define SERVO_LEFT 190
+#define ROTATE_TIME 3000
+ 
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+ 
+void setup() {
+  Serial.begin(115200);
+  Wire.begin();
+ 
+  pwm.begin();
+  pwm.setPWMFreq(50);
+ 
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED niet gevonden!");
+    for (;;);
+  }
+ 
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.println("Servo test start...");
+  display.display();
+  delay(1000);
+}
+ 
+void loop() {
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.println("Servo rechts 3s");
+  display.display();
+  pwm.setPWM(SERVO_CHANNEL, 0, SERVO_RIGHT);
+  delay(ROTATE_TIME);
+  pwm.setPWM(SERVO_CHANNEL, 0, SERVO_STOP);
+  delay(10);
+ 
+  display.clearDisplay();
+  display.setCursor(0, 0);
+  display.println("Servo links 3s");
+  display.display();
+  pwm.setPWM(SERVO_CHANNEL, 0, SERVO_LEFT);
+  delay(ROTATE_TIME);
+  pwm.setPWM(SERVO_CHANNEL, 0, SERVO_STOP);
+  delay(10);
+}
+
+        </section>
+
+        <!-- ============================================
+             AFBEELDINGEN SECTIE
+             Vervang de src met je eigen afbeeldingen
+             ============================================ -->
+        <section class="images-section">
+            <h2 class="section-title">Het ontwerp</h2>
+            
+            <div class="images-grid">
+                <!-- AFBEELDING 1 - Vervang src en alt tekst -->
+                <div class="image-card">
+                    <img 
+                        src="https://share.brunsveld.eu/api/shares/afbeelding/files/90e89668-f7c0-4ab8-b1d2-ea79e6d76a68?download=false" 
+                        alt="De robot hand wiring "
+                    >
+                    <div class="image-overlay">
+                        <p>Project 1 - Beschrijving hier</p>
+                    </div>
+                </div>
+
+                <!-- AFBEELDING 2 - Vervang src en alt tekst -->
+                <div class="image-card">
+                    <img 
+                        src="https://via.placeholder.com/600x400/12121a/00ff88?text=Project+2" 
+                        alt="Schermafbeelding 2026-01-28 182835"
+                    >
+                    <div class="image-overlay">
+                        <p>Project 2 - Beschrijving hier</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             ONDERDELENLIJST SECTIE
+             Voeg hier je onderdelen toe
+             ============================================ -->
+        <section class="parts-section">
+            <h2 class="section-title">Onderdelenlijst</h2>
+            
+            <div class="parts-list">
+                <ul>
+                    <!-- VOEG HIER JE ONDERDELEN TOE -->
+                    <!-- Voorbeeld formaat: <li>Onderdeel naam - specificaties</li> -->
+                    <li>ESP32 3x - Microcontroller board</li>
+                    <li>MG90S 5x - servomotoren</li>
+                    <li>PCA9685 1x - Servodriver board</li>
+                    <li>Flexsensoren 5x</li>
+                    <li>powerbank 2x - stroombron</li>
+                    <li>Breadboard+ jumper wires</li>
+		    <li>Visdraad en elastiek</li>
+
+                    <!-- VOEG MEER ONDERDELEN TOE NAAR BEHOEFTE -->
+                </ul>
+                
+                <!-- OF gebruik deze placeholder als je nog geen onderdelen hebt -->
+                <!-- <p class="parts-placeholder">Onderdelenlijst wordt later toegevoegd...</p> -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <p>&copy; 2026 <span>XVAIIER</span> | Alle rechten voorbehouden</p>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT - TAB FUNCTIONALITEIT
+         Minimale JS alleen voor de tabs
+         ============================================ -->
+    <script>
+        // Tab switching functionaliteit
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Verwijder active class van alle buttons en content
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Voeg active class toe aan geklikte button
+                button.classList.add('active');
+                
+                // Toon bijbehorende content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
